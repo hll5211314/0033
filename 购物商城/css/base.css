@@ -1,0 +1,21 @@
+/* *{margin:0;padding:0;}
+i{font-style: normal;}
+b{font-weight: normal;}
+ul,li,ol{list-style: none;}
+a{
+    text-decoration: none;
+  
+    color:#333;
+} */
+/*PC端:*/
+*{padding: 0;margin: 0;}
+body {font-family:'Microsoft Yahei','simsun','arial','tahoma';}
+h1, h2, h3, h4, h5, h6, th {font-size: 100%; font-weight: normal;}
+button,input,select,textarea{font-size:100%;outline: none;}
+fieldset,img{border:0;}
+a { text-decoration: none;background: none ;}
+ul, ol { list-style: none; }
+.cb{clear: both;}
+.margin-x-4{
+    margin:0 4px;
+}

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<h2>删除订单信息表</h2>
+	
+		编号<input type="text"  id="odid">
+		    <button onclick="del()">删除</button><br>
+		    <div id="d1"></div>
+		
+	</body>
+</html>
+<script type="text/javascript">
+	function del() {
+		var _odid = odid.value;
+		var xhr = new XMLHttpRequest;
+		xhr.onreadystatechange = function() {
+			if (xhr.readyState == 4 && xhr.status == 200) {
+				var r = xhr.responseText;
+				d1.innerHTML = r;
+			}
+		}
+		xhr.open("delete", `/ajax/del_user/${_odid}`, true);
+		xhr.send();
+	}
+</script>

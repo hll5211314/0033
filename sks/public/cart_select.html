@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<script>
+		function show(){
+			//0.获取用户数据
+			var _ctid=ctid.value;
+			if(!_ctid){
+				alert("未查到数据");
+				return;
+			}
+			//1.创建xhr对象
+			var xhr=new XMLHttpRequest()
+			//4.接收响应，创建监听
+			xhr.onreadystatechange=function(){
+				if(xhr.readyState==4 && xhr.status==200){
+					var r=xhr.responseText;
+					console.log(r);
+					var arr=JSON.parse(r);
+					//结构字符串htmlStr---表头
+					htmlStr=`
+					<table width='800px' border="1" bordercolor="purple" bgcolor="pink">
+					<tr>
+						<th>购物车id</th>
+						<th>商品名称</th>
+						<th>商品数量</th>
+						<th>创建购物车时间</th>
+						<th>商品数量时间</th>
+					</tr>
+					`
+					//结构字符串htmlStr---表中
+					for(var i=0;i<arr.length;i++){
+						htmlStr+=`
+						<tr>
+							<td>${arr[i].ctid}</td>
+							<td>${arr[i].ctproductid}</td>
+							<td>${arr[i].ctquantity}</td>
+							<td>${arr[i].ctcreatetime}</td>
+							<td>${arr[i].ctupdatetime}</td>
+						</tr>
+						`
+					}
+					//结构字符串htmlStr---表尾
+					htmlStr+=`
+					</table>
+					`
+					d1.innerHTML=htmlStr;
+				}
+			}
+			//2.创建请求
+			xhr.open("get",`/cart/cart_sel/${_ctid}`,true);
+			//3.发送请求
+			xhr.send();
+		}
+	</script>
+	<body>
+		<h4>查询商品</h4>
+		购物车id:<input type="text"  id="ctid"><br>
+		<button onclick="show()">查询</button><br>
+		<div id="d1"></div>
+		<a href="http://127.0.0.1:8080/cart.html">返回</a>
+	</body>
+</html>

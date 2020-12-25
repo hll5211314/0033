@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+
+	<body>
+		<h2>查询所有订单信息表</h2>
+		<button type="button" onclick="show()">显示</button>
+		<p id="d1"></p>
+	</body>
+
+</html>
+   <script>
+        function show() {
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function () {
+				// console.log(1)
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    var r = xhr.responseText; 
+					//console.log(typeof (r));
+                    var arr = JSON.parse(r);
+					
+                   var str = `
+                   		<table width="1600" border="1" bordercolor="purple" bgcolor="pink">
+                   		<tr>
+                   			<th>订单ID</th>
+                   			<th>用户的ID</th>
+                   			<th>收货信息ID</th>
+                   			<th>实付金额</th>
+                   			<th>付款类型</th>
+                   			<th>运费</th>
+                   			<th>订单状态</th>
+                   			<th>支付时间</th>
+                   			<th>发货时间</th>
+                   			<th>订单完成时间</th>
+                   			<th>交易关闭时间</th>
+                   			<th>订单创建时间</th>
+                   			<th>订单修改时间</th>					
+                   		</tr>
+                   	`;
+                    for (var i = 0; i < arr.length; i++) {
+                        str += `
+                        	<tr align="center">
+                        		<td>${arr[i].odid}</td>
+                        		<td>${arr[i].oduserid}</td>
+                        		<td>${arr[i].odshoppingid}</td>
+                        		<td>${arr[i].payment}</td>
+                        		<td>${arr[i].paymenttype}</td>
+                        		<td>${arr[i].postage}</td>
+                        		<td>${arr[i].odstatus}</td>
+                        		<td>${arr[i].paymenttime}</td>
+                        		<td>${arr[i].sendtime}</td>
+                        		<td>${arr[i].endtime}</td>
+                        		<td>${arr[i].closetime}</td>
+                        		<td>${arr[i].odcreatetime}</td>
+                        		<td>${arr[i].odupdatetime}</td>
+                        		<td><a href="">修改</a><a href="">删除</a></td>
+                        	</tr>
+                        	`;
+                    }
+                    str += `</table>`;
+                    d1.innerHTML = str;
+                }
+            }
+
+            xhr.open("get", `/user/get_userinfo`, true);
+
+            xhr.send();
+        }
+    </script>

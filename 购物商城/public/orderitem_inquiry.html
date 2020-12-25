@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+
+	<body>
+		<h2>查询所有订单信息表</h2>
+		<button type="button" onclick="show()">显示</button>
+		<p id="d1"></p>
+	</body>
+
+</html>
+   <script>
+        function show() {
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function () {
+				// console.log(1)
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    var r = xhr.responseText; 
+					//console.log(typeof (r));
+                    var arr = JSON.parse(r);
+					
+                   var str = `
+                   		<table width="1600" border="1" bordercolor="purple" bgcolor="pink">
+                   		<tr>
+                   			<th>子订单ID</th>
+                   			<th>订单ID</th>
+                   			<th>用户ID</th>
+                   			<th>商品ID</th>
+                   			<th>商品名称</th>
+                   			<th>商品主图</th>
+                   			<th>单价</th>
+                   			<th>商品数量</th>
+                   			<th>订单明细创建时间</th>
+                   			<th>订单明细修改时间</th>
+                   							
+                   		</tr>
+                   	`;
+                    for (var i = 0; i < arr.length; i++) {
+                        str += `
+                        	<tr align="center">
+                        		<td>${arr[i].oiid}</td>
+                        		<td>${arr[i].oiordersid}</td>
+                        		<td>${arr[i].oiuserid}</td>
+                        		<td>${arr[i].oiproductid}</td>
+                        		<td>${arr[i].oiproductname}</td>
+                        		<td>${arr[i].oiproductimage}</td>
+                        		<td>${arr[i].oiprice}</td>
+                        		<td>${arr[i].oicount}</td>
+                        		<td>${arr[i].oicreatetime}</td>
+                        		<td>${arr[i].oiupdatetime}</td>
+                        		
+                        		<td><a href="">修改</a><a href="">删除</a></td>
+                        	</tr>
+                        	`;
+                    }
+                    str += `</table>`;
+                    d1.innerHTML = str;
+                }
+            }
+
+            xhr.open("get", `/ajax/get_userinfoss`, true);
+
+            xhr.send();
+        }
+    </script>

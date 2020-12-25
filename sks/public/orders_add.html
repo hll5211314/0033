@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<h2>添加订单信息表</h2>
+		<form method="post" action="/users/add">
+			订单ID<input type="text" name="odid"><br>
+			用户的ID<input type="text" name="oduserid"><br>
+			收货信息ID<input type="text" name="odshoppingid"><br>
+			实付金额<input type="text" name="payment"><br>
+			<!-- 付款类型 <input type="text" name="paymenttype"><br> -->
+			付款类型<input type="radio" name="paymenttype" id="" value="微信" />微信
+			       <input type="radio" name="paymenttype" id="" value="支付宝" />支付宝
+			       <input type="radio" name="paymenttype" id="" value="云闪付" />云闪付<br>
+			运费<input type="text" name="postage"><br>
+			<!-- 订单状态<input type="text" name="odstatus"><br> -->
+			订单状态<input type="radio" name="odstatus" id="" value="取消" />取消
+			       <input type="radio" name="odstatus" id="" value="未付款" />未付款
+				   <input type="radio" name="odstatus" id="" value="已付款" />已付款
+				   <input type="radio" name="odstatus" id="" value="已发货" />已发货
+				   <input type="radio" name="odstatus" id="" value="交易成功" />交易成功
+				   <input type="radio" name="odstatus" id="" value="交易关闭" />交易关闭<br>
+			支付时间<input type="text" name="paymenttime"><br>
+			发货时间<input type="text" name="sendtime"><br>
+			订单完成时间<input type="text" name="endtime"><br>
+			交易关闭时间<input type="text" name="closetime"><br>
+			订单创建时间<input type="text" name="odcreatetime"><br>
+			订单修改时间<input type="text" name="odupdatetime"><br>
+			<input type="submit">
+		</form>
+	</body>
+</html>
